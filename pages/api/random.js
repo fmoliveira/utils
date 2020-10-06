@@ -1,6 +1,8 @@
 import crypto from "crypto";
 
-export default (req, res) => {
+import allowCors from "../../lib/allowCors";
+
+const handler = (req, res) => {
   const { size = "100" } = req.query;
   const randomLength = Number.parseInt(size, 10);
 
@@ -15,3 +17,5 @@ export default (req, res) => {
   res.statusCode = 200;
   res.json({ hash: randomHash });
 };
+
+export default allowCors(handler);
